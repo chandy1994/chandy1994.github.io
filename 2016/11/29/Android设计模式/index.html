@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android设计模式 | Chandy &#39;s Home | Noob</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="">
+  <meta name="description" content="Android中的设计模式Android的代码我接触的并不是特别多，就拿我接触过的代码来说的话有以下几个类：  （不断更新……）
+
+组合模式  
+策略模式
+单例模式
+工厂模式
+享元模式
+适配器模式
+原型模式
+观察者模式
+模版模式  
+
+接下来就Android内部的源码来一一解释一下（设计模式的图我就不贴了，网上都可找到）  
+组合模式首先来说组合模式，这个模式最为熟悉，我们的View（例如：But">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android设计模式">
+<meta property="og:url" content="https://chandy1994.github.io/2016/11/29/Android设计模式/index.html">
+<meta property="og:site_name" content="Chandy 's Home">
+<meta property="og:description" content="Android中的设计模式Android的代码我接触的并不是特别多，就拿我接触过的代码来说的话有以下几个类：  （不断更新……）
+
+组合模式  
+策略模式
+单例模式
+工厂模式
+享元模式
+适配器模式
+原型模式
+观察者模式
+模版模式  
+
+接下来就Android内部的源码来一一解释一下（设计模式的图我就不贴了，网上都可找到）  
+组合模式首先来说组合模式，这个模式最为熟悉，我们的View（例如：But">
+<meta property="og:updated_time" content="2016-11-29T16:14:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android设计模式">
+<meta name="twitter:description" content="Android中的设计模式Android的代码我接触的并不是特别多，就拿我接触过的代码来说的话有以下几个类：  （不断更新……）
+
+组合模式  
+策略模式
+单例模式
+工厂模式
+享元模式
+适配器模式
+原型模式
+观察者模式
+模版模式  
+
+接下来就Android内部的源码来一一解释一下（设计模式的图我就不贴了，网上都可找到）  
+组合模式首先来说组合模式，这个模式最为熟悉，我们的View（例如：But">
+  
+    <link rel="alternative" href="/atom.xml" title="Chandy &#39;s Home" type="application/atom+xml">
+  
+  <meta name="summary" content="love IT !">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.png"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Chandy</h5>
+        <a href="mailto:chandy1994@hotmail.com" title="chandy1994@hotmail.com" class="mail">chandy1994@hotmail.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/chandy1994" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/u/5501169492?refer_flag=1001030102_&is_all=1" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-link"></i>
+            测试
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Chandy &#39;s Home &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android设计模式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Android设计模式</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2016-11-29T12:44:08.000Z" itemprop="datePublished" class="page-time">
+  2016-11-29
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-Android设计模式" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meat flex-row">
+        
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Android中的设计模式"><span class="post-toc-text">Android中的设计模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#组合模式"><span class="post-toc-text">组合模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#策略模式"><span class="post-toc-text">策略模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#单例模式"><span class="post-toc-text">单例模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#工厂模式"><span class="post-toc-text">工厂模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#享元模式"><span class="post-toc-text">享元模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#适配器模式"><span class="post-toc-text">适配器模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#原型模式"><span class="post-toc-text">原型模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#观察者模式"><span class="post-toc-text">观察者模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模版模式"><span class="post-toc-text">模版模式</span></a></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Android中的设计模式"><a href="#Android中的设计模式" class="headerlink" title="Android中的设计模式"></a>Android中的设计模式</h1><p>Android的代码我接触的并不是特别多，就拿我接触过的代码来说的话有以下几个类：  （不断更新……）</p>
+<ul>
+<li>组合模式  </li>
+<li>策略模式</li>
+<li>单例模式</li>
+<li>工厂模式</li>
+<li>享元模式</li>
+<li>适配器模式</li>
+<li>原型模式</li>
+<li>观察者模式</li>
+<li>模版模式  </li>
+</ul>
+<p>接下来就Android内部的源码来一一解释一下（设计模式的图我就不贴了，网上都可找到）  </p>
+<h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2><p>首先来说组合模式，这个模式最为熟悉，我们的View（例如：Button，TextView等）和ViewGroup（例如：LinearLayout，Relativelayout等）就是用的这个模式，ViewGroup继承自View但是实现了add，remove等一系列的对View的操作。  </p>
+<pre><code> public abstract class ViewGroup extends View implements ViewParent, ViewManager {
+ public void addView(View child, int index, LayoutParams params) {
+    if (DBG) {
+        System.out.println(this + &quot; addView&quot;);
+    }
+    // addViewInner() will call child.requestLayout() when setting the new LayoutParams
+    // therefore, we call requestLayout() on ourselves before, so that the child&apos;s request
+    // will be blocked at our level
+    requestLayout();
+    invalidate(true);
+    addViewInner(child, index, params, false);
+}     
+public void removeView(View view) {
+    removeViewInternal(view);
+    requestLayout();
+    invalidate(true);
+}
+}
+</code></pre><h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>策略模式就是说我们有一系列的解决方法，我们可以选择其中一种来解决我们实际的问题，我们可以看下面的代码：  </p>
+<pre><code>//算法的接口 
+public interface PriceStrategy 
+{ 
+    public int setPrice(int orgPrice); 
+} 
+
+
+//实现一个接口，打7折商品 
+public class sevenPercentStrategy implements PriceStrategy 
+{ 
+public int setPrice(int orgPrice) 
+{ 
+      System.out.println(&quot;打7折商品&quot;); 
+      return orgPrice*0.7; 
+} 
+
+} 
+
+//实现一个接口，打5折商品 
+public class fivePercentStrategy implements PriceStrategy 
+{ 
+public int setPrice(int orgPrice) 
+{ 
+      System.out.println(&quot;打5折商品&quot;); 
+      return orgPrice*0.5; 
+} 
+
+} 
+//实现一个上下文对象 
+public class DstPrice 
+{   
+    private PriceStrategy mPriceStrategy;   
+
+public void setPriceMode(PriceStrategy priceMode) 
+{   
+    mPriceStrategy = priceMode;   
+}   
+
+public int ExeCalPrice(int price) 
+{   
+    mPriceStrategy.SetPrice(price); 
+}   
+}   
+</code></pre><p>我觉得看到代码基本就都明白了，而在我们的Android的系统当中，我们可以认为我们的Adapter就是用的策略模式，因为我们可以实现不同的Adapter来为ListView等控件来适配，而我们Adapter内部的逻辑又各不相同。 </p>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>单例模式这个很重要，为什么这么说，在Android操作系统当中，所有的系统服务都是单例模式，例如：  </p>
+<ul>
+<li>ActivityManagerService</li>
+<li>InputMethodManagerService</li>
+<li>PackageManagerService</li>
+<li>WindowManagerService  </li>
+<li>SearchManagerService</li>
+<li>……</li>
+</ul>
+<p>非常多的系统服务，在这里就不一一写出来了，我们如何获取这些服务呢？我们需要查看ContextImp.java这个文件，ContextImp是Context的实现类，我们的Activity也都是继承自这里，我们可以直接调用getSystemService的方法来获取  </p>
+<pre><code>class ContextImpl extends Context {
+public Object getSystemService(String name) {
+    ServiceFetcher fetcher = SYSTEM_SERVICE_MAP.get(name);
+    return fetcher == null ? null : fetcher.getService(this);
+}    
+</code></pre><p>我们以获取输入法服务为例，来继续看，开始的时候我们的所有服务都会被注册到一个hashmap当中，当需要某项服务的时候我们会从这个map当中寻找，例如寻找输入法服务，则会</p>
+<pre><code>return InputMethodManager.getInstance();
+</code></pre><p>接着再看，  </p>
+<pre><code>public final class InputMethodManager {
+……
+static InputMethodManager sInstance;
+……
+public static InputMethodManager getInstance() {
+    synchronized (InputMethodManager.class) {
+        if (sInstance == null) {
+            IBinder b = ServiceManager.getService(Context.INPUT_METHOD_SERVICE);
+            IInputMethodManager service = IInputMethodManager.Stub.asInterface(b);
+            sInstance = new InputMethodManager(service, Looper.getMainLooper());
+        }
+        return sInstance;
+    }
+}
+</code></pre><p>这就是单例模式，系统中只会储存一个实例，当我们需要它的时候，只需要调用获取他的方法就可以，不需要new一个出来，我们需要记住的是，Android所有的系统服务全都是单例模式，而且都是在系统初始化的时候生成的。</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂模式这个模式比较有意思，讲这个之前，我们将个例子：<br>第一天，我们进入到饭店（工厂）当中，我们告诉老板，我们需要一份红烧肉（产品），端上来之后，我们就可以开始吃了。<br>第二天，我们又进入到饭店（工厂）当中，然后告诉老板，我们需要一份酸菜鱼（产品），端上来之后，我们就又可以开始吃了。<br>我们每次只需要告诉老板，我们需要什么菜，剩下的你就加工就好了，做好了之后再交给我，这就是工厂模式所做的。我们看一下AsyncTask中的一部分代码：  </p>
+<pre><code>private static final ThreadFactory sThreadFactory = new ThreadFactory() {
+    private final AtomicInteger mCount = new AtomicInteger(1);
+
+    public Thread newThread(Runnable r) {
+        return new Thread(r, &quot;AsyncTask #&quot; + mCount.getAndIncrement());
+    }
+};
+</code></pre><p>我们可以看到，我们并不关心线程是怎么产生的，我们只是告诉他这个线程的Runnable是什么样的（该怎么运行），你只要负责制作好然后交给我就好了，十分简单。</p>
+<h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><p>享元模式可能在名称上听的比较少，但实际上就是为了减少系统内存开销，你不必一直new新对象，只是需要的时候从内部抽取，用完之后放回就可以了，可以有效利用资源。<br>前两天我们说的Handler-MessageQueue-Looper当中的Message就是这样的，接下来看一下源码：  </p>
+<pre><code>public final class Message implements Parcelable {
+
+……
+
+public static Message obtain() {
+    synchronized (sPoolSync) {
+        if (sPool != null) {
+            Message m = sPool;
+            sPool = m.next;
+            m.next = null;
+            m.flags = 0; // clear in-use flag
+            sPoolSize--;
+            return m;
+        }
+    }
+    return new Message();
+}  
+void recycleUnchecked() {
+    // Mark the message as in use while it remains in the recycled object pool.
+    // Clear out all other details.
+    flags = FLAG_IN_USE;
+    what = 0;
+    arg1 = 0;
+    arg2 = 0;
+    obj = null;
+    replyTo = null;
+    sendingUid = -1;
+    when = 0;
+    target = null;
+    callback = null;
+    data = null;
+
+    synchronized (sPoolSync) {
+        if (sPoolSize &lt; MAX_POOL_SIZE) {
+            next = sPool;
+            sPool = this;
+            sPoolSize++;
+        }
+    }
+}
+</code></pre><p>对系统资源充分利用，不需要自己new对象，需要的时候只需要获取就可以了，十分方便！  </p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>适配器对Android的开发者来说肯定不陌生，当我们写个ListView的时候，我们就需要用到Adapter了，为什么要用适配器呢？<br>首先想一个问题，我们的ListView陈列了三个属性，ID，姓名，成绩，而我们有一堆的Student对象存在了一个ArrayList当中，我们怎么能把这些数据编程一列一列的样子存放在ListView当中呢？这就是Adapter的价值，<strong>它的存在就是为了两种类型不同的数据提供借口，将我们已有的数据，通过我们Adapter搭建的bridge转化成我们可用的数据</strong>。在ListView当中，我们的Adapter有getView的方法，返回的是View对象，因此他将我们的Student对象转化为了View对象。我通常将Adapter理解为一个桥，我觉得真很贴切。</p>
+<blockquote>
+<p>public interface ListAdapter extends Adapter</p>
+<p>public abstract class BaseAdapter implements ListAdapter, SpinnerAdapter</p>
+</blockquote>
+<pre><code>public interface Adapter {
+
+……
+
+View getView(int position, View convertView, ViewGroup parent);
+
+……
+
+}
+</code></pre><h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>原型模式是个什么样子呢？就是说，当我需要一个产品的时候，我们会去询问商店的管理员，问这里有没有这么样的一个产品，如果有的话，他就会直接拿给我，说这就是；如果没有的话，他就会告诉我说我们这里可以订做你需要的类型的。<br>具体的在Android的中的实现在Intent当中，  </p>
+<pre><code>public class Intent implements Parcelable, Cloneable {
+public Intent() {
+}
+public Intent(Intent o) {
+    this.mAction = o.mAction;
+    this.mData = o.mData;
+    this.mType = o.mType;
+    this.mPackage = o.mPackage;
+    this.mComponent = o.mComponent;
+    this.mFlags = o.mFlags;
+    this.mContentUserHint = o.mContentUserHint;
+    if (o.mCategories != null) {
+        this.mCategories = new ArraySet&lt;String&gt;(o.mCategories);
+    }
+    if (o.mExtras != null) {
+        this.mExtras = new Bundle(o.mExtras);
+    }
+    if (o.mSourceBounds != null) {
+        this.mSourceBounds = new Rect(o.mSourceBounds);
+    }
+    if (o.mSelector != null) {
+        this.mSelector = new Intent(o.mSelector);
+    }
+    if (o.mClipData != null) {
+        this.mClipData = new ClipData(o.mClipData);
+    }
+}
+@Override
+public Object clone() {
+    return new Intent(this);
+}
+</code></pre><p>这个模式有个特点，就是实现了Cloneable的接口，那如果当我们有个比较复杂的类，而我们又不需要外界知道的时候，我们可以考虑使用原型模式，可以隐藏了具体细节。</p>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>观察者模式的实现还是挺多的，在我们实现的ListView的Adapter当中，我们可以有这样的方法：  </p>
+<pre><code>protected void notifyDataSetChange() {  
+    mDataSetObservable.notifyChanged();  
+} 
+</code></pre><p>用来通知我们的ListView我们的数据更新了，你需要重新绘制图层了。<br>另外还有我们的Button上的onClickListener。  </p>
+<pre><code>public class View implements Drawable.Callback, KeyEvent.Callback,
+    AccessibilityEventSource {
+
+    ……
+    public OnClickListener mOnClickListener;
+    private PerformClick mPerformClick;
+    ……
+
+    private final class PerformClick implements Runnable {
+    @Override
+    public void run() {
+        performClick();
+    }
+}
+
+    public interface OnClickListener {
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param v The view that was clicked.
+     */
+    void onClick(View v);
+}
+
+public void setOnClickListener(OnClickListener l) {
+    if (!isClickable()) {
+        setClickable(true);
+    }
+    getListenerInfo().mOnClickListener = l;
+}
+
+public boolean performClick() {
+    final boolean result;
+    final ListenerInfo li = mListenerInfo;
+    if (li != null &amp;&amp; li.mOnClickListener != null) {
+        playSoundEffect(SoundEffectConstants.CLICK);
+        li.mOnClickListener.onClick(this);
+        result = true;
+    } else {
+        result = false;
+    }
+
+    sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
+    return result;
+}
+
+public boolean onTouchEvent(MotionEvent event) {
+
+……
+
+      if (mPerformClick == null) {
+           mPerformClick = new PerformClick();
+      }
+      if (!post(mPerformClick)) {
+           performClick();
+      }
+……
+}
+</code></pre><p>我们可以清楚的看到，我们只要是设置了监听器，我们每次点击button的时候，我们都会调用onClick方法，那我们要做的就是填写onClick方法，而Listener就是我们所说的Observer（观察者）而我们的View也就是我们说的observable（被观察者）。<br>观察者和被观察者之间是耦合的关系，有利于系统的设计。</p>
+<h2 id="模版模式"><a href="#模版模式" class="headerlink" title="模版模式"></a>模版模式</h2><p>模版模式是我最喜欢的模式，也是我认为最简洁，最好用的方法。<br>它的大体思想可以用这么一个故事来说明：<br>父亲对刚出生的儿子说，你现在还小，但是当你慢慢长大的时候，你需要先学会说话，学会走路，然后开始学习，balabala，因为父亲就是这样子过来的，一大堆终于说完了。而孩子也慢慢长大了，也是按照父亲说的这个顺序做的，但是呢，他说话，走路，学习等一系列事情都是他自己设定的。<br>总体来说，就是说父类将逻辑的顺序都给你写好了，子类省去了一系列复杂的逻辑，你只需要将重要的方法Override就可以了，其余的他自己会在必要的时候调用的。<br>我们用View来说明这个问题：  </p>
+<pre><code>public class View implements Drawable.Callback, KeyEvent.Callback,
+    AccessibilityEventSource {
+    public boolean onTouchEvent(MotionEvent event) {
+    ……
+    }
+    protected void dispatchDraw(Canvas canvas) {
+
+    }
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+    }
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
+            getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
+    }
+    protected void onDraw(Canvas canvas) {
+    }
+}
+</code></pre><p>在Android的内部，绘制UI的流程是onMeasure，onLayout，onDraw，这些顺序进行的，所以我们实现自定义View（View的子类）的时候我们根本不需要考虑很多的内部逻辑，我们只需要告诉这些方法，大小是多少，怎么放置，怎么画这个View，就算是完事儿了。是不是很简洁？</p>
+
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://chandy1994.github.io/2016/11/29/Android设计模式/" target="_blank" rel="external">https://chandy1994.github.io/2016/11/29/Android设计模式/</a>
+                </p>
+                <footer><cite><a href="https://chandy1994.github.io">@Chandy 's Home</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/11/26/Handler-MessageQueue-Looper/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Handler-MessageQueue-Looper</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android设计模式" data-title="Android设计模式" data-url="https://chandy1994.github.io/2016/11/29/Android设计模式/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "Android设计模式",
+    pic: "/img/logo.png",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://chandy1994.github.io/2016/11/29/Android设计模式/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
