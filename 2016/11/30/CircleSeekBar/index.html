@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CircleSeekBar | Chandy &#39;s Home | Noob</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="">
+  <meta name="description" content="Android自定义View——CircleSeekBar长话短说，由于需求，需要写一个CircleSeekBar，在网上查看了一些别人的写法，再加上自己对View的一些知识，今天终于写完了。 
+具体的步骤如下所示：  
+
+自定义View的属性生成XML文件
+重写onMeasure()方法
+重写onDraw()方法
+//必要的时候重写其他方法
+
+从第一步开始来说，先贴上我们自定义属性的XML文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CircleSeekBar">
+<meta property="og:url" content="https://chandy1994.github.io/2016/11/30/CircleSeekBar/index.html">
+<meta property="og:site_name" content="Chandy 's Home">
+<meta property="og:description" content="Android自定义View——CircleSeekBar长话短说，由于需求，需要写一个CircleSeekBar，在网上查看了一些别人的写法，再加上自己对View的一些知识，今天终于写完了。 
+具体的步骤如下所示：  
+
+自定义View的属性生成XML文件
+重写onMeasure()方法
+重写onDraw()方法
+//必要的时候重写其他方法
+
+从第一步开始来说，先贴上我们自定义属性的XML文件">
+<meta property="og:image" content="https://chandy1994.github.io/Users/Chandy/Desktop/circleseekbar.png">
+<meta property="og:updated_time" content="2016-11-30T16:39:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CircleSeekBar">
+<meta name="twitter:description" content="Android自定义View——CircleSeekBar长话短说，由于需求，需要写一个CircleSeekBar，在网上查看了一些别人的写法，再加上自己对View的一些知识，今天终于写完了。 
+具体的步骤如下所示：  
+
+自定义View的属性生成XML文件
+重写onMeasure()方法
+重写onDraw()方法
+//必要的时候重写其他方法
+
+从第一步开始来说，先贴上我们自定义属性的XML文件">
+<meta name="twitter:image" content="https://chandy1994.github.io/Users/Chandy/Desktop/circleseekbar.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Chandy &#39;s Home" type="application/atom+xml">
+  
+  <meta name="summary" content="love IT !">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.png"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Chandy</h5>
+        <a href="mailto:chandy1994@hotmail.com" title="chandy1994@hotmail.com" class="mail">chandy1994@hotmail.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/chandy1994" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/u/5501169492?refer_flag=1001030102_&is_all=1" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-link"></i>
+            测试
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Chandy &#39;s Home &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CircleSeekBar</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">CircleSeekBar</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2016-11-30T15:38:36.000Z" itemprop="datePublished" class="page-time">
+  2016-11-30
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-CircleSeekBar" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meat flex-row">
+        
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Android自定义View——CircleSeekBar"><span class="post-toc-text">Android自定义View——CircleSeekBar</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Android自定义View——CircleSeekBar"><a href="#Android自定义View——CircleSeekBar" class="headerlink" title="Android自定义View——CircleSeekBar"></a>Android自定义View——CircleSeekBar</h1><p>长话短说，由于需求，需要写一个CircleSeekBar，在网上查看了一些别人的写法，再加上自己对View的一些知识，今天终于写完了。 </p>
+<p>具体的步骤如下所示：  </p>
+<ul>
+<li>自定义View的属性生成XML文件</li>
+<li>重写onMeasure()方法</li>
+<li>重写onDraw()方法</li>
+<li>//必要的时候重写其他方法</li>
+</ul>
+<p>从第一步开始来说，先贴上我们自定义属性的XML文件  </p>
+<pre><code>&lt;resources&gt;
+&lt;declare-styleable name=&quot;CircleSeekBar&quot;&gt;
+    &lt;attr name=&quot;android:thumb&quot; /&gt;
+    &lt;attr name=&quot;progress_width&quot; format=&quot;dimension&quot; /&gt;
+    &lt;attr name=&quot;progress_background&quot; format=&quot;color&quot; /&gt;
+    &lt;attr name=&quot;progress_front&quot; format=&quot;color&quot; /&gt;
+    &lt;attr name=&quot;progress_max&quot; format=&quot;integer&quot; /&gt;
+    &lt;attr name=&quot;thumbSize&quot; format=&quot;dimension&quot;/&gt;
+&lt;/declare-styleable&gt;
+&lt;/resources&gt;
+</code></pre><p>这些属性就跟我们平时和控件设置宽高什么的没什么区别，只有设置完这些，你才能在使用自定义View的时候使用这些属性。  </p>
+<p>虽然View的绘制流程是onMeasure-&gt;onLayout-&gt;onDraw但是这里我们只需要写onMeasure和onDraw就够了  </p>
+<p>在onMeasure当中我们的标准写法是这样的：  </p>
+<pre><code>@Override  
+protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {  
+    int widthMode = MeasureSpec.getMode(widthMeasureSpec);  
+    int heightMode = MeasureSpec.getMode(heightMeasureSpec);  
+    int widthSize = MeasureSpec.getSize(widthMeasureSpec);  
+    int heightSize = MeasureSpec.getSize(heightMeasureSpec);  
+
+    int width;  
+    int height;  
+
+    ...   
+
+    if (widthMode == MeasureSpec.EXACTLY) {  
+        // Parent has told us how big to be. So be it.  
+        width = widthSize;  
+    } else {  
+        if (mLayout != null &amp;&amp; mEllipsize == null) {  
+            des = desired(mLayout);  
+        }  
+
+    ...  
+
+    setMeasuredDimension(width, height);   
+</code></pre><p>我们的Mode一共有三种：MeasureSpec.UNSPECIFIED，MeasureSpec.EXACTLY，MeasureSpec.AT_MOST，分别进行判断就可以了。  </p>
+<p>最后只需要调用setMeasuredDimension(width, height); 这一步的作用是告诉系统我们的View到底有多大，这一步才完成了我们onMeasure的作用。  </p>
+<p>测量完多大了之后我们基本就可以开始写我们的onDraw方法了，这个方法我们只需要告诉系统怎么绘制我们的图画就好了。  </p>
+<p>下面直接贴上我写的CircleSeekBar的java代码：  </p>
+<pre><code>public class CircleSeekBar extends View {
+private final String TAG = &quot;CircleSeekBar&quot;;
+
+private Context mcontext = null;
+
+private Drawable thumb = null;
+private float thumbHeight = 0;
+private float thumbWidth = 0;
+private float thumbLeft = 0;
+private float thumbTop = 0;
+private float thumbSize=0;
+private int[] thumbNormal = null;
+private int[] thumbPressed = null;
+
+private int maxProgress = 100;
+private int curProgress = 0;
+private float progressDegree = 0;
+
+private Paint backgroundPaint = null;
+private Paint frontPaint = null;
+private int backColor = 0;
+private int frontColor = 0;
+
+private Paint thumbPaint;
+private int thumbColor;
+
+private float seekBarWidth = 0;
+private int seekbarSize = 0;
+private int seekbarRadius = 0;
+private int seekbarCenterX = 0;
+private int seekbarCenterY = 0;
+private double lastradian = 0;
+
+
+private RectF rectF;
+private final static double PI = Math.PI;
+//seekbar的监听器
+private OnSeekBarChangeListener mOnSeekBarChangeListener = null;
+
+//内部类 接口
+public interface OnSeekBarChangeListener {
+
+    void onProgressChanged(int progress);
+
+    void onStartTrackingTouch();
+
+    void onStopTrackingTouch();
+}
+
+
+//构造方法，从xml文档当中读取参数信息；
+public CircleSeekBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    super(context, attrs, defStyleAttr, defStyleRes);
+    mcontext = context;
+    rectF = new RectF();
+    final TypedArray a = context.obtainStyledAttributes(attrs,
+            R.styleable.CircleSeekBar, defStyleAttr, defStyleRes);
+
+    thumbNormal = new int[]{-android.R.attr.state_focused, -android.R.attr.state_pressed};
+    thumbPressed = new int[]{android.R.attr.state_focused, android.R.attr.state_pressed};
+
+    seekBarWidth = a.getDimension(R.styleable.CircleSeekBar_progress_width, 40);
+    backColor = a.getColor(R.styleable.CircleSeekBar_progress_background, Color.GRAY);
+    frontColor = a.getColor(R.styleable.CircleSeekBar_progress_front, Color.BLUE);
+    maxProgress = a.getInteger(R.styleable.CircleSeekBar_progress_max, 100);
+    thumb = a.getDrawable(R.styleable.CircleSeekBar_android_thumb);
+    if(null!=thumb){
+        thumbWidth = thumb.getIntrinsicWidth();
+        thumbHeight = thumb.getIntrinsicHeight();
+    }else {
+        thumbColor=frontColor;
+        thumbPaint=new Paint();
+        thumbPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        thumbPaint.setAntiAlias(true);
+        thumbPaint.setColor(thumbColor);
+        thumbSize = a.getDimension(R.styleable.CircleSeekBar_thumbSize,seekBarWidth*2);
+        thumbHeight=thumbWidth=thumbSize;
+    }
+
+
+    //设置画笔
+    backgroundPaint = new Paint();
+    frontPaint = new Paint();
+    backgroundPaint.setColor(backColor);
+    frontPaint.setColor(frontColor);
+    backgroundPaint.setAntiAlias(true);
+    frontPaint.setAntiAlias(true);
+    backgroundPaint.setStyle(Paint.Style.STROKE);
+    frontPaint.setStyle(Paint.Style.STROKE);
+    backgroundPaint.setStrokeWidth(seekBarWidth);
+    frontPaint.setStrokeWidth(seekBarWidth);
+
+
+
+
+    a.recycle();
+
+
+}
+
+public CircleSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    this(context, attrs, defStyleAttr, 0);
+}
+
+public CircleSeekBar(Context context, AttributeSet attrs) {
+    this(context, attrs, 0);
+}
+
+public CircleSeekBar(Context context) {
+    this(context, null);
+
+}
+
+@Override
+public boolean onTouchEvent(MotionEvent event) {
+    //不要用getRawX 这是屏幕上的绝对坐标
+    //用getx获取相对坐标
+    float pointX = event.getX();
+    float pointY = event.getY();
+    switch (event.getAction()) {
+        case MotionEvent.ACTION_DOWN:
+            if (null != mOnSeekBarChangeListener) {
+                mOnSeekBarChangeListener.onStartTrackingTouch();
+            }
+            moveThumb(pointX, pointY, false, false);
+            break;
+        case MotionEvent.ACTION_MOVE:
+            if (null != mOnSeekBarChangeListener) {
+                mOnSeekBarChangeListener.onProgressChanged(curProgress);
+            }
+            moveThumb(pointX, pointY, false, true);
+            break;
+        case MotionEvent.ACTION_UP:
+            if (null != mOnSeekBarChangeListener) {
+                mOnSeekBarChangeListener.onStopTrackingTouch();
+            }
+            moveThumb(pointX, pointY, true, false);
+            break;
+    }
+    return true;
+}
+
+
+//我们要自己测量控件的宽和高
+
+@Override
+protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+    int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+    int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+    int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+//        if (widthMode == MeasureSpec.AT_MOST &amp;&amp; heightMode == MeasureSpec.AT_MOST) {
+//            Log.d(&quot;MyView&quot;, &quot;---AT_MOST---&quot;);
+//            seekbarSize = widthSize &gt; heightSize ? heightSize : widthSize;
+//        }
+//        if (speMode == MeasureSpec.UNSPECIFIED) {
+//            Log.d(&quot;MyView&quot;, &quot;---UNSPECIFIED---&quot;);
+//        }
+    if (widthMode == MeasureSpec.EXACTLY &amp;&amp; heightMode == MeasureSpec.EXACTLY) {
+        Log.d(&quot;MyView&quot;, &quot;---EXACTLY---&quot;);
+        seekbarSize = widthSize &gt; heightSize ? heightSize : widthSize;
+    }
+    seekbarCenterX = widthSize / 2;
+    seekbarCenterY = heightSize / 2;
+    seekbarRadius = (seekbarSize - (int)thumbWidth) / 2;
+    int left = seekbarCenterX - seekbarRadius;
+    int right = seekbarCenterX + seekbarRadius;
+    int top = seekbarCenterY - seekbarRadius;
+    int bottom = seekbarCenterY + seekbarRadius;
+    rectF.set(left, top, right, bottom);
+    setThumbPosition(0);
+
+    setMeasuredDimension(widthSize, heightSize);
+
+}
+
+@Override
+protected void onDraw(Canvas canvas) {
+    super.onDraw(canvas);
+    canvas.drawCircle(seekbarCenterX, seekbarCenterY, seekbarRadius,
+            backgroundPaint);
+    canvas.drawArc(rectF, -90, progressDegree, false, frontPaint);
+    drawThumb(canvas);
+}
+
+public void drawThumb(Canvas canvas) {
+    if (null != thumb) {
+        thumb.setBounds((int) thumbLeft, (int) thumbTop, (int) (thumbLeft + thumbWidth), (int) (thumbTop + thumbHeight));
+        thumb.draw(canvas);
+    }
+    canvas.drawCircle(thumbLeft+thumbWidth/2,thumbTop+thumbHeight/2,thumbHeight/2,thumbPaint);
+
+}
+
+public void moveThumb(float eventX, float eventY, boolean isPointerUp, boolean isMoving) {
+    if ((isPointerOn(eventX, eventY) &amp;&amp; !isPointerUp) || (!isPointerOn(eventX, eventY) &amp;&amp; isMoving)) {
+        if (null != thumb) {
+            thumb.setState(thumbPressed);
+
+        }
+        double radian = Math.atan2((seekbarCenterX - eventX), (seekbarCenterY - eventY));
+        //y与直线的夹角[-Pi,Pi]
+
+//
+        if (radian &lt; 0) {
+            radian += PI * 2;
+        }
+        radian = 2 * PI - radian;
+
+        if (((radian - lastradian)) &gt; PI ) {
+            radian = 0;
+        }
+        if (((lastradian - radian)) &gt; PI ) {
+            radian = 2 * PI;
+        }
+
+        lastradian = radian;
+
+        setThumbPosition((float) radian);
+        progressDegree = Math.round(Math.toDegrees(radian));
+        curProgress = (int) (progressDegree / 360 * maxProgress);
+        if (null != mOnSeekBarChangeListener) {
+            mOnSeekBarChangeListener.onProgressChanged(curProgress);
+        }
+
+    } else {
+        if (null != thumb) {
+            thumb.setState(thumbNormal);
+        }
+    }
+    invalidate();
+
+}
+
+public boolean isPointerOn(float eventX, float eventY) {
+    float dist = (float) Math.sqrt(Math.pow(eventY - seekbarCenterY, 2) + Math.pow(eventX - seekbarCenterX, 2));
+    if (dist &gt; seekbarRadius - thumbWidth / 2 &amp;&amp; dist &lt; seekbarRadius + thumbWidth / 2) {
+        return true;
+    }
+    return false;
+
+}
+
+public void setThumbPosition(float radians) {
+    radians = radians - (float) (0.5 * PI);
+    thumbLeft = (float) seekbarCenterX + seekbarRadius * (float) Math.cos(radians) - thumbWidth / 2;
+    thumbTop = (float) seekbarCenterY + seekbarRadius * (float) Math.sin(radians) - thumbWidth / 2;
+    //Log.d(&quot;left&quot;,thumbLeft+&quot;&quot;);
+}
+
+
+public synchronized void setProgress(int i) {
+    if (i &lt; 0) {
+        curProgress = 0;
+    }
+    if (i &gt; maxProgress) {
+        curProgress = maxProgress;
+    }
+    curProgress = i;
+    progressDegree = (i / 360 * maxProgress);
+    setThumbPosition((float) Math.toRadians(progressDegree));
+    invalidate();
+
+}
+
+public void setThumb(int d) {
+    thumb = mcontext.getResources().getDrawable(d);
+    thumbWidth = thumb.getIntrinsicWidth();
+    thumbHeight = thumb.getIntrinsicHeight();
+}
+
+public int getProgress() {
+    return curProgress;
+}
+
+public int getMaxProgress() {
+    return maxProgress;
+}
+}
+</code></pre><p>代码其实很短，最开始我们通过TypedArray获取到了我们自定义的属性，来填充我们的属性值，接着我们自己重写了onTouch方法，使他每次都返回true（事件的处理分发回头写），代表消费了这个事件，然后获取手指的位置看看是不是在seekbar的里面，是的话就开始计算角度，之后就可以设置各个常量的值，比如seekbar的当前值，拖动滑块的位置等等，等一切都计算好并赋值完毕之后，我们就可以调用invalidate()方法了，这个方法就会立刻请求重新绘制图层，就会调用onDraw方法，又会重新绘制画面，从而使滑块滑动，进度条上涨。（不知道有没有比一直invalidate()效率更高的方法了- -！）   </p>
+<p>我认为整体的难度在于计算角度，从上部滑动了多少角度，因为atan2（y2-y1,x2-x1)返回的是从x轴负半轴开始向上划过的角度，而我们需要的是从y轴正半轴开始向右划过的角度，因此又开动脑筋，将函数写为atan2(x2-x1,y2-y1)这时我们求的是y轴正半轴开始向左的角度，这时只需要用2PI减去这个值就可以了，最后一点就是，我们的是一个原型的seekbar，很有可能是可以循环滑动的，所以我们需要设置两个临界，就是0和2PI，分别是最小和最大，我们加一些逻辑判断看看是否是突变或者其他的原因导致从2PI瞬间到0了（这样的突变是不应该存在的）<strong>每次绘制图层前都应该先判断再绘制</strong>   </p>
+<p>这也算是第一次自定义的一个View也算是给以后开一个好头吧！<br>最后上一个我们的程序的实际运行的图片：  </p>
+<p><img src="/Users/Chandy/Desktop/circleseekbar.png" alt="local"></p>
+
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://chandy1994.github.io/2016/11/30/CircleSeekBar/" target="_blank" rel="external">https://chandy1994.github.io/2016/11/30/CircleSeekBar/</a>
+                </p>
+                <footer><cite><a href="https://chandy1994.github.io">@Chandy 's Home</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/11/29/Android设计模式/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android设计模式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="CircleSeekBar" data-title="CircleSeekBar" data-url="https://chandy1994.github.io/2016/11/30/CircleSeekBar/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "CircleSeekBar",
+    pic: "/img/logo.png",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://chandy1994.github.io/2016/11/30/CircleSeekBar/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
