@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Activity-启动模式 | Chandy &#39;s Home | Noob</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="">
+  <meta name="description" content="Activity-启动模式Activity启动模式一共有四种，分别是：  
+
+Standard
+SingleTop
+SingleTask
+SingleInstance  
+
+我们来一一说明这些启动模式的区别  
+首先要说明的是，如果需要更改一个Activity的启动模式的话我们需要到程序的AdnroidManifest.xml中来为相应的Activity添加Android：launchMode标签">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Activity-启动模式">
+<meta property="og:url" content="https://chandy1994.github.io/2016/12/27/Activity-启动模式/index.html">
+<meta property="og:site_name" content="Chandy 's Home">
+<meta property="og:description" content="Activity-启动模式Activity启动模式一共有四种，分别是：  
+
+Standard
+SingleTop
+SingleTask
+SingleInstance  
+
+我们来一一说明这些启动模式的区别  
+首先要说明的是，如果需要更改一个Activity的启动模式的话我们需要到程序的AdnroidManifest.xml中来为相应的Activity添加Android：launchMode标签">
+<meta property="og:updated_time" content="2016-12-27T12:30:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Activity-启动模式">
+<meta name="twitter:description" content="Activity-启动模式Activity启动模式一共有四种，分别是：  
+
+Standard
+SingleTop
+SingleTask
+SingleInstance  
+
+我们来一一说明这些启动模式的区别  
+首先要说明的是，如果需要更改一个Activity的启动模式的话我们需要到程序的AdnroidManifest.xml中来为相应的Activity添加Android：launchMode标签">
+  
+    <link rel="alternative" href="/atom.xml" title="Chandy &#39;s Home" type="application/atom+xml">
+  
+  <meta name="summary" content="love IT !">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.png"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Chandy</h5>
+        <a href="mailto:chandy1994@hotmail.com" title="chandy1994@hotmail.com" class="mail">chandy1994@hotmail.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/chandy1994" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://weibo.com/u/5501169492?refer_flag=1001030102_&is_all=1" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-link"></i>
+            测试
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Chandy &#39;s Home &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Activity-启动模式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Activity-启动模式</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2016-12-27T11:56:40.000Z" itemprop="datePublished" class="page-time">
+  2016-12-27
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-Activity-启动模式" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meat flex-row">
+        
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Activity-启动模式"><span class="post-toc-text">Activity-启动模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Standard"><span class="post-toc-text">Standard</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SingleTop"><span class="post-toc-text">SingleTop</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SingleTask"><span class="post-toc-text">SingleTask</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SingleInstance"><span class="post-toc-text">SingleInstance</span></a></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Activity-启动模式"><a href="#Activity-启动模式" class="headerlink" title="Activity-启动模式"></a>Activity-启动模式</h1><p>Activity启动模式一共有四种，分别是：  </p>
+<ul>
+<li>Standard</li>
+<li>SingleTop</li>
+<li>SingleTask</li>
+<li>SingleInstance  </li>
+</ul>
+<p>我们来一一说明这些启动模式的区别  </p>
+<p>首先要说明的是，如果需要更改一个Activity的启动模式的话我们需要到程序的AdnroidManifest.xml中来为相应的Activity添加Android：launchMode标签  </p>
+<h2 id="Standard"><a href="#Standard" class="headerlink" title="Standard"></a>Standard</h2><p>这是标准模式，在你没有明确为Activity标识要用那种启动模式的话，默认的就是标准模式  </p>
+<p>在标准模式下，我们每启动一个Activity都会压入到当前程序的Activity栈当中，比如说我们有一个应用程序有个Activity A我们在A中设置了一个按钮，点击可以跳转到Activity A（没错，还是A），那么我们每次都会生成一个新的Activity压入到栈当中，也就是说我们点击了多少次，就有多少个入栈，所以我们每次按Back都是退出到上一个Activity A当中，所以我们也要按相应次的Back按钮，才可以彻底退出程序。（此模式不论栈中有没有实例，都将生成新的实例） </p>
+<p><strong>应用场景：一般没有特殊要求的，可选用默认设置</strong>  </p>
+<h2 id="SingleTop"><a href="#SingleTop" class="headerlink" title="SingleTop"></a>SingleTop</h2><p>这种模式的意思是说，如果我们选择的Activity不是在栈顶的话，我们会生成新的实例，如果在栈顶的话，我们不会生成新的实例，而是直接调用onNewIntent方法。  </p>
+<p>假设我们现在有A B两个Activity，流程为A-&gt;B，这时我们停留在B当中，假如此时我们要跳转到A，则会变为A-&gt;B-&gt;A（不论A是否为SingleTop，因为她不在栈顶），那如果是跳转到B的话就会变为A-&gt;B，<br>没有第三个，而是直接调用了onNewIntent方法了，所以还是两个。（如果不在栈顶的话才会生成实例，否则调用onNewIntent方法）</p>
+<p><strong>应用场景：比较适用于消息推送，例如QQ，微信之类的，弹窗中会显示所有页面的信息，不应该每个人都设置一个弹窗。</strong></p>
+<h2 id="SingleTask"><a href="#SingleTask" class="headerlink" title="SingleTask"></a>SingleTask</h2><p>这种模式当中，如果我们要跳转的Activity在我们的栈当中，我们则清空这个任务栈里在这个Activity以上的其他Activity，并跳转到目标Activity，举个例子：<br>我们有A，B，C三个Activity，我们的流程为A-&gt;B-&gt;C，此时，如果我们要跳转到A的话，我们的任务栈就会从ABC变为A，会把BC全部清理出去，这个比较好理解（如果栈中有实例，则也会onNewIntent，如果没实例，则会创建一个）</p>
+<p><strong>应用场景：比如像浏览器的主页面，每次我们打开浏览器之类的应用，我们会清除掉上几次操作，而直接跳转到主界面</strong></p>
+<h2 id="SingleInstance"><a href="#SingleInstance" class="headerlink" title="SingleInstance"></a>SingleInstance</h2><p>这个模式，和前面的都不一样，这个模式中，被声明为SingleInstance的Activity不会和其他的Activity进入到同一个任务栈当中，而是会进入到另一个任务栈，还是举个例子：<br>我们有A，B，C三个Activity，此时，B设置为SingleInstance，然后我们的流程为A-&gt;B-&gt;C，我们如果此时按一下Back会退到那里呢？会退到A当中，因为A和C是在一个任务栈当中，当它退栈完毕后，即点了两次Back后，我们会退到B当中，再次Back后，才会退出应用。（会生成另外一个任务栈，比较特殊）</p>
+<p><strong>应用场景：比较适合某些应用的综合页面，我们从程序的一部分进入到程序中，我们希望最后看到的是应用的主程序。</strong></p>
+
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://chandy1994.github.io/2016/12/27/Activity-启动模式/" target="_blank" rel="external">https://chandy1994.github.io/2016/12/27/Activity-启动模式/</a>
+                </p>
+                <footer><cite><a href="https://chandy1994.github.io">@Chandy 's Home</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/11/30/CircleSeekBar/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CircleSeekBar</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Activity-启动模式" data-title="Activity-启动模式" data-url="https://chandy1994.github.io/2016/12/27/Activity-启动模式/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "Activity-启动模式",
+    pic: "/img/logo.png",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://chandy1994.github.io/2016/12/27/Activity-启动模式/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

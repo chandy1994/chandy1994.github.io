@@ -141,6 +141,58 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-Activity-启动模式" 
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2016/12/27/Activity-启动模式/">Activity-启动模式</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-12-27T11:56:40.000Z" itemprop="datePublished" class="post-time">
+  2016-12-27
+</time>
+
+        
+
+ 
+    </div>
+    
+    <div class="post-content" id="post-content" itemprop="postContent" >
+    
+        <h1 id="Activity-启动模式"><a href="#Activity-启动模式" class="headerlink" title="Activity-启动模式"></a>Activity-启动模式</h1><p>Activity启动模式一共有四种，分别是：  </p>
+<ul>
+<li>Standard</li>
+<li>SingleTop</li>
+<li>SingleTask</li>
+<li>SingleInstance  </li>
+</ul>
+<p>我们来一一说明这些启动模式的区别  </p>
+<p>首先要说明的是，如果需要更改一个Activity的启动模式的话我们需要到程序的AdnroidManifest.xml中来为相应的Activity添加Android：launchMode标签  </p>
+<h2 id="Standard"><a href="#Standard" class="headerlink" title="Standard"></a>Standard</h2><p>这是标准模式，在你没有明确为Activity标识要用那种启动模式的话，默认的就是标准模式  </p>
+<p>在标准模式下，我们每启动一个Activity都会压入到当前程序的Activity栈当中，比如说我们有一个应用程序有个Activity A我们在A中设置了一个按钮，点击可以跳转到Activity A（没错，还是A），那么我们每次都会生成一个新的Activity压入到栈当中，也就是说我们点击了多少次，就有多少个入栈，所以我们每次按Back都是退出到上一个Activity A当中，所以我们也要按相应次的Back按钮，才可以彻底退出程序。（此模式不论栈中有没有实例，都将生成新的实例） </p>
+<p><strong>应用场景：一般没有特殊要求的，可选用默认设置</strong>  </p>
+<h2 id="SingleTop"><a href="#SingleTop" class="headerlink" title="SingleTop"></a>SingleTop</h2><p>这种模式的意思是说，如果我们选择的Activity不是在栈顶的话，我们会生成新的实例，如果在栈顶的话，我们不会生成新的实例，而是直接调用onNewIntent方法。  </p>
+<p>假设我们现在有A B两个Activity，流程为A-&gt;B，这时我们停留在B当中，假如此时我们要跳转到A，则会变为A-&gt;B-&gt;A（不论A是否为SingleTop，因为她不在栈顶），那如果是跳转到B的话就会变为A-&gt;B，<br>没有第三个，而是直接调用了onNewIntent方法了，所以还是两个。（如果不在栈顶的话才会生成实例，否则调用onNewIntent方法）</p>
+<p><strong>应用场景：比较适用于消息推送，例如QQ，微信之类的，弹窗中会显示所有页面的信息，不应该每个人都设置一个弹窗。</strong></p>
+<h2 id="SingleTask"><a href="#SingleTask" class="headerlink" title="SingleTask"></a>SingleTask</h2><p>这种模式当中，如果我们要跳转的Activity在我们的栈当中，我们则清空这个任务栈里在这个Activity以上的其他Activity，并跳转到目标Activity，举个例子：<br>我们有A，B，C三个Activity，我们的流程为A-&gt;B-&gt;C，此时，如果我们要跳转到A的话，我们的任务栈就会从ABC变为A，会把BC全部清理出去，这个比较好理解（如果栈中有实例，则也会onNewIntent，如果没实例，则会创建一个）</p>
+<p><strong>应用场景：比如像浏览器的主页面，每次我们打开浏览器之类的应用，我们会清除掉上几次操作，而直接跳转到主界面</strong></p>
+<h2 id="SingleInstance"><a href="#SingleInstance" class="headerlink" title="SingleInstance"></a>SingleInstance</h2><p>这个模式，和前面的都不一样，这个模式中，被声明为SingleInstance的Activity不会和其他的Activity进入到同一个任务栈当中，而是会进入到另一个任务栈，还是举个例子：<br>我们有A，B，C三个Activity，此时，B设置为SingleInstance，然后我们的流程为A-&gt;B-&gt;C，我们如果此时按一下Back会退到那里呢？会退到A当中，因为A和C是在一个任务栈当中，当它退栈完毕后，即点了两次Back后，我们会退到B当中，再次Back后，才会退出应用。（会生成另外一个任务栈，比较特殊）</p>
+<p><strong>应用场景：比较适合某些应用的综合页面，我们从程序的一部分进入到程序中，我们希望最后看到的是应用的主程序。</strong></p>
+
+    
+    </div>
+    
+</article>
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-CircleSeekBar" 
   class="article article-type-post" itemprop="blogPost">
      
@@ -506,14 +558,14 @@ public int getMaxProgress() {
     </li>
   
     <li class="post-list-item">
-        <article id="post-Android设计模式" 
+        <article id="post-Android-设计模式" 
   class="article article-type-post" itemprop="blogPost">
      
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/11/29/Android设计模式/">Android设计模式</a>
+      <a class="post-title-link" href="/2016/11/29/Android-设计模式/">Android-设计模式</a>
     </h3>
   
 
@@ -531,7 +583,7 @@ public int getMaxProgress() {
     
     <div class="post-content" id="post-content" itemprop="postContent" >
     
-        <h1 id="Android中的设计模式"><a href="#Android中的设计模式" class="headerlink" title="Android中的设计模式"></a>Android中的设计模式</h1><p>Android的代码我接触的并不是特别多，就拿我接触过的代码来说的话有以下几个类：  （不断更新……）</p>
+        <h1 id="Android-设计模式"><a href="#Android-设计模式" class="headerlink" title="Android-设计模式"></a>Android-设计模式</h1><p>Android的代码我接触的并不是特别多，就拿我接触过的代码来说的话有以下几个类：  （不断更新……）</p>
 <ul>
 <li>组合模式  </li>
 <li>策略模式</li>
@@ -1035,9 +1087,8 @@ IMessenger mMessenger;
 }
 </code></pre><ul>
 <li>如果Message中有Runnable对象就运行它；  </li>
-<li>如果没有Runnable对象，但是实现了CallBack接口的话，就调用接口中的handleMessage方法；</li>
+<li>如果没有Runnable对象，但是实现了CallBack接口的话，就调用接口中的handleMessage方法(写字类实现)；</li>
 <li>如果都没有的话，就调用自身已经写好的handleMessage方法；</li>
-<li>（老Google还是想的挺周到的，接口是为了避免你要重写一个子类，文档中说的）  </li>
 </ul>
 <p>解释说明代码：  </p>
 <pre><code>private static void handleCallback(Message message) 

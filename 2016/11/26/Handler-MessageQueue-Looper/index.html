@@ -33,7 +33,7 @@
 
 我先说几个关键性的结">
 <meta property="og:image" content="http://image.lxway.com/upload/1/36/136c06769c6d0a67f1f05d6fc8e504ac_thumb.png">
-<meta property="og:updated_time" content="2016-11-26T17:11:05.000Z">
+<meta property="og:updated_time" content="2016-12-11T13:14:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Handler-MessageQueue-Looper">
 <meta name="twitter:description" content="Handler-MessageQueue-Looper首先呢，标题上的三个兄弟是用来完成异步操作的，虽然AsyncTask也可以完成，但是每次都启用新线程的话有时候会比较复杂，而这三个放在一起却十分好用。那为什么会有异步操作呢？我认为有以下几个原因：  
@@ -406,9 +406,8 @@ IMessenger mMessenger;
 }
 </code></pre><ul>
 <li>如果Message中有Runnable对象就运行它；  </li>
-<li>如果没有Runnable对象，但是实现了CallBack接口的话，就调用接口中的handleMessage方法；</li>
+<li>如果没有Runnable对象，但是实现了CallBack接口的话，就调用接口中的handleMessage方法(写字类实现)；</li>
 <li>如果都没有的话，就调用自身已经写好的handleMessage方法；</li>
-<li>（老Google还是想的挺周到的，接口是为了避免你要重写一个子类，文档中说的）  </li>
 </ul>
 <p>解释说明代码：  </p>
 <pre><code>private static void handleCallback(Message message) 
@@ -448,9 +447,9 @@ IMessenger mMessenger;
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2016/11/29/Android设计模式/" id="post-prev" class="post-nav-link">
+      <a href="/2016/11/29/Android-设计模式/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Android设计模式</h4>
+        <h4 class="title">Android-设计模式</h4>
       </a>
     </div>
   
