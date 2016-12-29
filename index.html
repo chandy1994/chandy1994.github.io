@@ -141,6 +141,66 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-优化细节" 
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2016/12/29/优化细节/">优化细节</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-12-29T15:58:46.000Z" itemprop="datePublished" class="post-time">
+  2016-12-29
+</time>
+
+        
+
+ 
+    </div>
+    
+    <div class="post-content" id="post-content" itemprop="postContent" >
+    
+        <p>#细节优化篇</p>
+<p>##ANR<br>ANR俗称应用程序未响应，如何避免:   </p>
+<ul>
+<li>不要在Activity的UI线程中进行耗时操作，触控未响应大约5s会ANR</li>
+<li>不要再Broadcastreceiver当中进行耗时操作，因为他绑定了应用的主线程，同样会ANR</li>
+<li>不要再Service当中进行进行耗时操作，因为他也绑定了应用的主线程，造成ANR  </li>
+</ul>
+<p>避免这些行为，你可以在他们之中建立新的线程，来避免主线程阻塞</p>
+<p>##内存泄漏<br>内存泄漏问题比较常见，比如我们常用的Handler<br>我们在Activity当中我们创建了一个Handler的实例，当我们的Activity因为各种原因被关闭了之后，系统是没有办法回收资源的，因为我们的Handler是内部类，对外部类有引用，因此Handler会对外部的Activity持有引用，导致其无法正常回收，引起内存泄漏。我们一般用以下两种方法来阻止这种情况发生：   </p>
+<ul>
+<li>声明Handler为static，这样静态的内部类不会依赖于外部类</li>
+<li>使Handler对外部的引用改为WeakReference，这样在内存不足的时候，可以正常回收外部的Activity和Handler</li>
+</ul>
+<p>##内存溢出<br>溢出的原因常见于加载图片，我们都经常掉入Bitmap的坑中，一个Bitmap其实是很消耗内存的，更不要说一次加载很多张，我们可以使用以下方法尽可能的规避这个问题：   </p>
+<ul>
+<li>即使的recycle掉Bitmap</li>
+<li>使用LRUcache来缓存我们的图片</li>
+<li>可以先调用API将图片裁剪为我们需要的尺寸，然后在获取他</li>
+<li>如果图片被其他图层遮蔽掉了，就不要显示了，浪费资源</li>
+</ul>
+<p>##View和图片</p>
+<ul>
+<li>能使用png的尽量不用jpg，不仅仅因为大小，也因为显示效果</li>
+<li>如果不需要背景颜色的话，我们可以将背景设置为透明，我们可以在设置中点开查看我们的图层的层数，太厚的话会影响绘制达不到16ms一帧，造成卡顿</li>
+<li>如果你不想你的控件的触控时间被上一级拦截，你可以加入这样的代码在dispatchTouchEvent里面：this.getParent().requestDisallowInterceptTouchEvent(true);</li>
+</ul>
+<p>……<br><strong>未完待续</strong></p>
+
+    
+    </div>
+    
+</article>
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-Activity-启动模式" 
   class="article article-type-post" itemprop="blogPost">
      

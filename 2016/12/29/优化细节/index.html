@@ -3,47 +3,47 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Activity-启动模式 | Chandy &#39;s Home | Noob</title>
+  <title>优化细节 | Chandy &#39;s Home | Noob</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
   <meta name="keywords" content="">
-  <meta name="description" content="Activity-启动模式Activity启动模式一共有四种，分别是：  
+  <meta name="description" content="#细节优化篇
+##ANRANR俗称应用程序未响应，如何避免:   
 
-Standard
-SingleTop
-SingleTask
-SingleInstance  
+不要在Activity的UI线程中进行耗时操作，触控未响应大约5s会ANR
+不要再Broadcastreceiver当中进行耗时操作，因为他绑定了应用的主线程，同样会ANR
+不要再Service当中进行进行耗时操作，因为他也绑定了应用的主线程，造成ANR  
 
-我们来一一说明这些启动模式的区别  
-首先要说明的是，如果需要更改一个Activity的启动模式的话我们需要到程序的AdnroidManifest.xml中来为相应的Activity添加Android：launchMode标签">
+避免这些行为，你可以在他们之中建立新的线程，来避免主线程阻塞
+##内">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Activity-启动模式">
-<meta property="og:url" content="https://chandy1994.github.io/2016/12/27/Activity-启动模式/index.html">
+<meta property="og:title" content="优化细节">
+<meta property="og:url" content="https://chandy1994.github.io/2016/12/29/优化细节/index.html">
 <meta property="og:site_name" content="Chandy 's Home">
-<meta property="og:description" content="Activity-启动模式Activity启动模式一共有四种，分别是：  
+<meta property="og:description" content="#细节优化篇
+##ANRANR俗称应用程序未响应，如何避免:   
 
-Standard
-SingleTop
-SingleTask
-SingleInstance  
+不要在Activity的UI线程中进行耗时操作，触控未响应大约5s会ANR
+不要再Broadcastreceiver当中进行耗时操作，因为他绑定了应用的主线程，同样会ANR
+不要再Service当中进行进行耗时操作，因为他也绑定了应用的主线程，造成ANR  
 
-我们来一一说明这些启动模式的区别  
-首先要说明的是，如果需要更改一个Activity的启动模式的话我们需要到程序的AdnroidManifest.xml中来为相应的Activity添加Android：launchMode标签">
-<meta property="og:updated_time" content="2016-12-27T12:30:36.000Z">
+避免这些行为，你可以在他们之中建立新的线程，来避免主线程阻塞
+##内">
+<meta property="og:updated_time" content="2016-12-29T16:25:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Activity-启动模式">
-<meta name="twitter:description" content="Activity-启动模式Activity启动模式一共有四种，分别是：  
+<meta name="twitter:title" content="优化细节">
+<meta name="twitter:description" content="#细节优化篇
+##ANRANR俗称应用程序未响应，如何避免:   
 
-Standard
-SingleTop
-SingleTask
-SingleInstance  
+不要在Activity的UI线程中进行耗时操作，触控未响应大约5s会ANR
+不要再Broadcastreceiver当中进行耗时操作，因为他绑定了应用的主线程，同样会ANR
+不要再Service当中进行进行耗时操作，因为他也绑定了应用的主线程，造成ANR  
 
-我们来一一说明这些启动模式的区别  
-首先要说明的是，如果需要更改一个Activity的启动模式的话我们需要到程序的AdnroidManifest.xml中来为相应的Activity添加Android：launchMode标签">
+避免这些行为，你可以在他们之中建立新的线程，来避免主线程阻塞
+##内">
   
     <link rel="alternative" href="/atom.xml" title="Chandy &#39;s Home" type="application/atom+xml">
   
@@ -132,7 +132,7 @@ SingleInstance
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Activity-启动模式</div>
+        <div class="flex-col header-title ellipsis">优化细节</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -153,11 +153,11 @@ SingleInstance
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Activity-启动模式</h1>
+    <h1 class="author">优化细节</h1>
     <h5 class="subtitle">
           
-            <time datetime="2016-12-27T11:56:40.000Z" itemprop="datePublished" class="page-time">
-  2016-12-27
+            <time datetime="2016-12-29T15:58:46.000Z" itemprop="datePublished" class="page-time">
+  2016-12-29
 </time>
 
  
@@ -167,7 +167,7 @@ SingleInstance
 </header>
 
     <div class="container body-wrap">
-      <article id="post-Activity-启动模式" 
+      <article id="post-优化细节" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
@@ -216,7 +216,7 @@ SingleInstance
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Activity-启动模式"><span class="post-toc-text">Activity-启动模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Standard"><span class="post-toc-text">Standard</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SingleTop"><span class="post-toc-text">SingleTop</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SingleTask"><span class="post-toc-text">SingleTask</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SingleInstance"><span class="post-toc-text">SingleInstance</span></a></li></ol></li></ol>
+            
             </nav>
             
         </aside>
@@ -224,30 +224,38 @@ SingleInstance
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="Activity-启动模式"><a href="#Activity-启动模式" class="headerlink" title="Activity-启动模式"></a>Activity-启动模式</h1><p>Activity启动模式一共有四种，分别是：  </p>
+            <p>#细节优化篇</p>
+<p>##ANR<br>ANR俗称应用程序未响应，如何避免:   </p>
 <ul>
-<li>Standard</li>
-<li>SingleTop</li>
-<li>SingleTask</li>
-<li>SingleInstance  </li>
+<li>不要在Activity的UI线程中进行耗时操作，触控未响应大约5s会ANR</li>
+<li>不要再Broadcastreceiver当中进行耗时操作，因为他绑定了应用的主线程，同样会ANR</li>
+<li>不要再Service当中进行进行耗时操作，因为他也绑定了应用的主线程，造成ANR  </li>
 </ul>
-<p>我们来一一说明这些启动模式的区别  </p>
-<p>首先要说明的是，如果需要更改一个Activity的启动模式的话我们需要到程序的AdnroidManifest.xml中来为相应的Activity添加Android：launchMode标签  </p>
-<h2 id="Standard"><a href="#Standard" class="headerlink" title="Standard"></a>Standard</h2><p>这是标准模式，在你没有明确为Activity标识要用那种启动模式的话，默认的就是标准模式  </p>
-<p>在标准模式下，我们每启动一个Activity都会压入到当前程序的Activity栈当中，比如说我们有一个应用程序有个Activity A我们在A中设置了一个按钮，点击可以跳转到Activity A（没错，还是A），那么我们每次都会生成一个新的Activity压入到栈当中，也就是说我们点击了多少次，就有多少个入栈，所以我们每次按Back都是退出到上一个Activity A当中，所以我们也要按相应次的Back按钮，才可以彻底退出程序。（此模式不论栈中有没有实例，都将生成新的实例） </p>
-<p><strong>应用场景：一般没有特殊要求的，可选用默认设置</strong>  </p>
-<h2 id="SingleTop"><a href="#SingleTop" class="headerlink" title="SingleTop"></a>SingleTop</h2><p>这种模式的意思是说，如果我们选择的Activity不是在栈顶的话，我们会生成新的实例，如果在栈顶的话，我们不会生成新的实例，而是直接调用onNewIntent方法。  </p>
-<p>假设我们现在有A B两个Activity，流程为A-&gt;B，这时我们停留在B当中，假如此时我们要跳转到A，则会变为A-&gt;B-&gt;A（不论A是否为SingleTop，因为她不在栈顶），那如果是跳转到B的话就会变为A-&gt;B，<br>没有第三个，而是直接调用了onNewIntent方法了，所以还是两个。（如果不在栈顶的话才会生成实例，否则调用onNewIntent方法）</p>
-<p><strong>应用场景：比较适用于消息推送，例如QQ，微信之类的，弹窗中会显示所有页面的信息，不应该每个人都设置一个弹窗。</strong></p>
-<h2 id="SingleTask"><a href="#SingleTask" class="headerlink" title="SingleTask"></a>SingleTask</h2><p>这种模式当中，如果我们要跳转的Activity在我们的栈当中，我们则清空这个任务栈里在这个Activity以上的其他Activity，并跳转到目标Activity，举个例子：<br>我们有A，B，C三个Activity，我们的流程为A-&gt;B-&gt;C，此时，如果我们要跳转到A的话，我们的任务栈就会从ABC变为A，会把BC全部清理出去，这个比较好理解（如果栈中有实例，则也会onNewIntent，如果没实例，则会创建一个）</p>
-<p><strong>应用场景：比如像浏览器的主页面，每次我们打开浏览器之类的应用，我们会清除掉上几次操作，而直接跳转到主界面</strong></p>
-<h2 id="SingleInstance"><a href="#SingleInstance" class="headerlink" title="SingleInstance"></a>SingleInstance</h2><p>这个模式，和前面的都不一样，这个模式中，被声明为SingleInstance的Activity不会和其他的Activity进入到同一个任务栈当中，而是会进入到另一个任务栈，还是举个例子：<br>我们有A，B，C三个Activity，此时，B设置为SingleInstance，然后我们的流程为A-&gt;B-&gt;C，我们如果此时按一下Back会退到那里呢？会退到A当中，因为A和C是在一个任务栈当中，当它退栈完毕后，即点了两次Back后，我们会退到B当中，再次Back后，才会退出应用。（会生成另外一个任务栈，比较特殊）</p>
-<p><strong>应用场景：比较适合某些应用的综合页面，我们从程序的一部分进入到程序中，我们希望最后看到的是应用的主程序。</strong></p>
+<p>避免这些行为，你可以在他们之中建立新的线程，来避免主线程阻塞</p>
+<p>##内存泄漏<br>内存泄漏问题比较常见，比如我们常用的Handler<br>我们在Activity当中我们创建了一个Handler的实例，当我们的Activity因为各种原因被关闭了之后，系统是没有办法回收资源的，因为我们的Handler是内部类，对外部类有引用，因此Handler会对外部的Activity持有引用，导致其无法正常回收，引起内存泄漏。我们一般用以下两种方法来阻止这种情况发生：   </p>
+<ul>
+<li>声明Handler为static，这样静态的内部类不会依赖于外部类</li>
+<li>使Handler对外部的引用改为WeakReference，这样在内存不足的时候，可以正常回收外部的Activity和Handler</li>
+</ul>
+<p>##内存溢出<br>溢出的原因常见于加载图片，我们都经常掉入Bitmap的坑中，一个Bitmap其实是很消耗内存的，更不要说一次加载很多张，我们可以使用以下方法尽可能的规避这个问题：   </p>
+<ul>
+<li>即使的recycle掉Bitmap</li>
+<li>使用LRUcache来缓存我们的图片</li>
+<li>可以先调用API将图片裁剪为我们需要的尺寸，然后在获取他</li>
+<li>如果图片被其他图层遮蔽掉了，就不要显示了，浪费资源</li>
+</ul>
+<p>##View和图片</p>
+<ul>
+<li>能使用png的尽量不用jpg，不仅仅因为大小，也因为显示效果</li>
+<li>如果不需要背景颜色的话，我们可以将背景设置为透明，我们可以在设置中点开查看我们的图层的层数，太厚的话会影响绘制达不到16ms一帧，造成卡顿</li>
+<li>如果你不想你的控件的触控时间被上一级拦截，你可以加入这样的代码在dispatchTouchEvent里面：this.getParent().requestDisallowInterceptTouchEvent(true);</li>
+</ul>
+<p>……<br><strong>未完待续</strong></p>
 
             <blockquote>
                 <p>
                 本文地址：
-                <a href="https://chandy1994.github.io/2016/12/27/Activity-启动模式/" target="_blank" rel="external">https://chandy1994.github.io/2016/12/27/Activity-启动模式/</a>
+                <a href="https://chandy1994.github.io/2016/12/29/优化细节/" target="_blank" rel="external">https://chandy1994.github.io/2016/12/29/优化细节/</a>
                 </p>
                 <footer><cite><a href="https://chandy1994.github.io">@Chandy 's Home</a></cite></footer>
             </blockquote>
@@ -255,19 +263,12 @@ SingleInstance
             
 <nav class="post-nav">
   
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2016/12/29/优化细节/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">优化细节</h4>
-      </a>
-    </div>
-  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/11/30/CircleSeekBar/" id="post-next" class="post-nav-link">
+      <a href="/2016/12/27/Activity-启动模式/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">CircleSeekBar</h4>
+        <h4 class="title">Activity-启动模式</h4>
       </a>
     </div>
   
@@ -278,7 +279,7 @@ SingleInstance
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Activity-启动模式" data-title="Activity-启动模式" data-url="https://chandy1994.github.io/2016/12/27/Activity-启动模式/index.html"></div>
+	<div class="ds-thread" data-thread-key="优化细节" data-title="优化细节" data-url="https://chandy1994.github.io/2016/12/29/优化细节/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -309,10 +310,10 @@ SingleInstance
 
 <script>
 var BLOG_SHARE = {
-    title: "Activity-启动模式",
+    title: "优化细节",
     pic: "/img/logo.png",
     summary: document.getElementsByName('summary')[0].content,
-    url: "https://chandy1994.github.io/2016/12/27/Activity-启动模式/index.html"
+    url: "https://chandy1994.github.io/2016/12/29/优化细节/index.html"
 };
 </script>
 <div class="global-share" id="global-share">
