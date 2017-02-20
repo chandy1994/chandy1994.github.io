@@ -3,26 +3,47 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello Android | Chandy &#39;s Home | Noob</title>
+  <title>异步任务 | Chandy &#39;s Home | Noob</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
   <meta name="keywords" content="">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+  <meta name="description" content="#Android异步任务在我们的程序当中，难免会用的异步任务，因为如果我们的程序在主线程当中运行了耗时的操作，就会阻塞掉主线程，从而引起ANR，为了避免这样的情况发生，我们引入了异步任务的概念。  
+异步任务处理的方式有以下多种：  
+
+RxJava
+Handler-Looper
+AsyncTask
+……  
+
+我个人首推的是这个RxJava，虽然他入门不简单，但是他的代码写起来是链状的，不会嵌套">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello Android">
-<meta property="og:url" content="https://chandy1994.github.io/2016/11/03/hello-android/index.html">
+<meta property="og:title" content="异步任务">
+<meta property="og:url" content="https://chandy1994.github.io/2016/12/30/异步任务/index.html">
 <meta property="og:site_name" content="Chandy 's Home">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-11-24T17:05:10.000Z">
+<meta property="og:description" content="#Android异步任务在我们的程序当中，难免会用的异步任务，因为如果我们的程序在主线程当中运行了耗时的操作，就会阻塞掉主线程，从而引起ANR，为了避免这样的情况发生，我们引入了异步任务的概念。  
+异步任务处理的方式有以下多种：  
+
+RxJava
+Handler-Looper
+AsyncTask
+……  
+
+我个人首推的是这个RxJava，虽然他入门不简单，但是他的代码写起来是链状的，不会嵌套">
+<meta property="og:updated_time" content="2017-01-01T12:49:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello Android">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="异步任务">
+<meta name="twitter:description" content="#Android异步任务在我们的程序当中，难免会用的异步任务，因为如果我们的程序在主线程当中运行了耗时的操作，就会阻塞掉主线程，从而引起ANR，为了避免这样的情况发生，我们引入了异步任务的概念。  
+异步任务处理的方式有以下多种：  
+
+RxJava
+Handler-Looper
+AsyncTask
+……  
+
+我个人首推的是这个RxJava，虽然他入门不简单，但是他的代码写起来是链状的，不会嵌套">
   
     <link rel="alternative" href="/atom.xml" title="Chandy &#39;s Home" type="application/atom+xml">
   
@@ -111,7 +132,7 @@ Quick">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Hello Android</div>
+        <div class="flex-col header-title ellipsis">异步任务</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -132,11 +153,11 @@ Quick">
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Hello Android</h1>
+    <h1 class="author">异步任务</h1>
     <h5 class="subtitle">
           
-            <time datetime="2016-11-03T11:11:20.000Z" itemprop="datePublished" class="page-time">
-  2016-11-03
+            <time datetime="2016-12-29T16:32:21.000Z" itemprop="datePublished" class="page-time">
+  2016-12-30
 </time>
 
  
@@ -146,7 +167,7 @@ Quick">
 </header>
 
     <div class="container body-wrap">
-      <article id="post-hello-android" 
+      <article id="post-异步任务" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
@@ -195,7 +216,7 @@ Quick">
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Quick-Start"><span class="post-toc-text">Quick Start</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Create-a-new-post"><span class="post-toc-text">Create a new post</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Run-server"><span class="post-toc-text">Run server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generate-static-files"><span class="post-toc-text">Generate static files</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deploy-to-remote-sites"><span class="post-toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            
             </nav>
             
         </aside>
@@ -203,20 +224,83 @@ Quick">
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <p>#Android异步任务<br>在我们的程序当中，难免会用的异步任务，因为如果我们的程序在主线程当中运行了耗时的操作，就会阻塞掉主线程，从而引起ANR，为了避免这样的情况发生，我们引入了异步任务的概念。  </p>
+<p>异步任务处理的方式有以下多种：  </p>
+<ul>
+<li>RxJava</li>
+<li>Handler-Looper</li>
+<li>AsyncTask</li>
+<li>……  </li>
+</ul>
+<p>我个人首推的是这个RxJava，虽然他入门不简单，但是他的代码写起来是链状的，不会嵌套，很干净利索。具体的使用方法，可以在Github上查看文档，有时间我会更新（立Flag）。  </p>
+<p>Handler这个在之前的介绍中已经深度分析了，所以，这次我的主要任务就是介绍AsyncTask，然后做个简单的对比  </p>
+<p>##AsyncTask<br>AsyncTask定义了三种泛型类型 Params，Progress和Result。</p>
+<p>Params 启动任务执行的输入参数，比如HTTP请求的URL。<br>Progress 后台任务执行的百分比。<br>Result 后台执行任务最终返回的结果，比如String。  </p>
+<p>一般情况下，我们继承自这个类，然后覆写其中的这几个方法：   </p>
+<blockquote>
+<ul>
+<li>doInBackground</li>
+<li>onPreExecute</li>
+<li>onPostExecute</li>
+<li>onProgressUpdate</li>
+<li>onCancelled  </li>
+</ul>
+</blockquote>
+<p>使用AsyncTask类，以下是几条必须遵守的准则：</p>
+<p>1.Task的实例必须在UI thread中创建；<br>2.execute方法必须在UI thread中调用；<br>3.不要手动调用其中的这几个方法，我们需要执行的时候只需要调用execute()方法即可<br>4.不要多次调用同一个task（有时候当cancel掉时候虽然doInBackground仍在进行，但是不会在调用onProgressUpdate函数了，只能等待线程结束）</p>
+<p>###doInBackground<br>在这个方法当中，我们会进行一些耗时的操作，比如网络访问，数据库访问等等，然后获取数据之后，我们可以调用publishProgress(x)这个方法，将x数据传递给onProgressUpdate函数，来更新我们的实时进度</p>
+<p>###onProgressUpdate<br>这个函数当中，我们可以将我们的数据的更新进度情况设置给我们的ProgressBar当中，让用户知道我们的实时进度</p>
+<p>###onPreExecute<br>这个是在doInBackground之前调用的，进行一些初始化的操作</p>
+<p>###onPostExecute<br>这个函数是在doInbackground之后调用的，我们在这个函数当中，可以将我们获取到的数据更新到我们的UI线程当中，至此，我们的异步操作任务就基本完成了  </p>
+<p>###onCancelled<br>这个方法是用来取消掉我们的任务时，我们要进行的操作  </p>
+<p>观看源码之后，我们可以知道，在这个AsyncTask类的内部，有个线程工厂  </p>
+<pre><code>private static final ThreadFactory sThreadFactory = new ThreadFactory() {
+    private final AtomicInteger mCount = new AtomicInteger(1);
+
+    public Thread newThread(Runnable r) {
+        return new Thread(r, &quot;AsyncTask #&quot; + mCount.getAndIncrement());
+    }
+};   
+</code></pre><p>这也是我们之前讲过的设计模式中的工厂模式  </p>
+<p>还有一个线程池用来优化系统资源：  </p>
+<pre><code>private static class SerialExecutor implements Executor {
+    final ArrayDeque&lt;Runnable&gt; mTasks = new ArrayDeque&lt;Runnable&gt;();
+    Runnable mActive;
+
+    public synchronized void execute(final Runnable r) {
+        mTasks.offer(new Runnable() {
+            public void run() {
+                try {
+                    r.run();
+                } finally {
+                    scheduleNext();
+                }
+            }
+        });
+        if (mActive == null) {
+            scheduleNext();
+        }
+    }
+
+    protected synchronized void scheduleNext() {
+        if ((mActive = mTasks.poll()) != null) {
+            THREAD_POOL_EXECUTOR.execute(mActive);
+        }
+    }
+}
+</code></pre><p>当我们调用execute方法后，线程池会帮助我们来进行执行我们的任务，到这里可能会有疑问，为什么这个AsyncTask在主线程中创建，可以同时进行耗时和更新UI的矛盾操作呢？因为它是一个新的线程，并且，在内部有个InternalHandler，其实这就是个Handler，并且是主线程，这也就是为什么他可以更新UI，<strong>实质上还是使用了Handler-MessageQueue-Looper</strong>，将它们包装成了一个异步任务类，使得是用起来代码更加简洁一点。  </p>
+<p>讲到这里我们的异步任务还是都只是一个线程，每次执行的都是一个任务，那能不能让我们的线程每次执行多个呢？这也和我们的线程池有关，我们可以设置他的线程池为</p>
+<blockquote>
+<p>public static final Executor THREAD_POOL_EXECUTOR</p>
+</blockquote>
+<p>类型的，这样便可以同时执行多个任务了。</p>
+<p>###对比<br>这样子，就讲完了AsyncTask这个类了，我没有把源码都贴出来，有需要的话可以自己查看一下。  </p>
+<p>现在我觉得一些比较复杂点的操作，比如说要下载一些文件呀，音频啊之类的，我们完全可以使用AsyncTask任务来完成，这样不会使代码耦合度不会太高，并且因为使用了线程池的原因，过程完全是可控的，这也是最大的优点，而Handler的使用则是挺全能的</p>
 
             <blockquote>
                 <p>
                 本文地址：
-                <a href="https://chandy1994.github.io/2016/11/03/hello-android/" target="_blank" rel="external">https://chandy1994.github.io/2016/11/03/hello-android/</a>
+                <a href="https://chandy1994.github.io/2016/12/30/异步任务/" target="_blank" rel="external">https://chandy1994.github.io/2016/12/30/异步任务/</a>
                 </p>
                 <footer><cite><a href="https://chandy1994.github.io">@Chandy 's Home</a></cite></footer>
             </blockquote>
@@ -225,13 +309,20 @@ Quick">
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2016/11/24/Activity-生命周期/" id="post-prev" class="post-nav-link">
+      <a href="/2016/12/30/View绘制流程/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Activity 生命周期</h4>
+        <h4 class="title">View绘制流程</h4>
       </a>
     </div>
   
 
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/12/30/Android触屏事件分发机制/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android触屏事件分发机制</h4>
+      </a>
+    </div>
   
 </nav>
 
@@ -240,7 +331,7 @@ Quick">
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="hello-android" data-title="Hello Android" data-url="https://chandy1994.github.io/2016/11/03/hello-android/index.html"></div>
+	<div class="ds-thread" data-thread-key="异步任务" data-title="异步任务" data-url="https://chandy1994.github.io/2016/12/30/异步任务/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -271,10 +362,10 @@ Quick">
 
 <script>
 var BLOG_SHARE = {
-    title: "Hello Android",
+    title: "异步任务",
     pic: "/img/logo.png",
     summary: document.getElementsByName('summary')[0].content,
-    url: "https://chandy1994.github.io/2016/11/03/hello-android/index.html"
+    url: "https://chandy1994.github.io/2016/12/30/异步任务/index.html"
 };
 </script>
 <div class="global-share" id="global-share">

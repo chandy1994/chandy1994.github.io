@@ -3,26 +3,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello Android | Chandy &#39;s Home | Noob</title>
+  <title>Android启动流程 | Chandy &#39;s Home | Noob</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
   <meta name="keywords" content="">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+  <meta name="description" content="#Android启动流程写了标题，才发现这个标题写的太大了，那这篇文章就分为两部分，一部分讲Android系统的启动，另一部分讲App的启动。  
+##Android系统启动我们都知道Android是基于Linux的，所以他的启动流程和Linux如出一辙。  
+在Linux系统中所有的进程都是init进程的子进程。Zygote也一样它是在系统启动的过程中由init进程创建的，在系统启动脚本init">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello Android">
-<meta property="og:url" content="https://chandy1994.github.io/2016/11/03/hello-android/index.html">
+<meta property="og:title" content="Android启动流程">
+<meta property="og:url" content="https://chandy1994.github.io/2016/12/30/Android启动流程/index.html">
 <meta property="og:site_name" content="Chandy 's Home">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-11-24T17:05:10.000Z">
+<meta property="og:description" content="#Android启动流程写了标题，才发现这个标题写的太大了，那这篇文章就分为两部分，一部分讲Android系统的启动，另一部分讲App的启动。  
+##Android系统启动我们都知道Android是基于Linux的，所以他的启动流程和Linux如出一辙。  
+在Linux系统中所有的进程都是init进程的子进程。Zygote也一样它是在系统启动的过程中由init进程创建的，在系统启动脚本init">
+<meta property="og:updated_time" content="2017-02-20T18:15:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello Android">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="Android启动流程">
+<meta name="twitter:description" content="#Android启动流程写了标题，才发现这个标题写的太大了，那这篇文章就分为两部分，一部分讲Android系统的启动，另一部分讲App的启动。  
+##Android系统启动我们都知道Android是基于Linux的，所以他的启动流程和Linux如出一辙。  
+在Linux系统中所有的进程都是init进程的子进程。Zygote也一样它是在系统启动的过程中由init进程创建的，在系统启动脚本init">
   
     <link rel="alternative" href="/atom.xml" title="Chandy &#39;s Home" type="application/atom+xml">
   
@@ -111,7 +114,7 @@ Quick">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Hello Android</div>
+        <div class="flex-col header-title ellipsis">Android启动流程</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -132,11 +135,11 @@ Quick">
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Hello Android</h1>
+    <h1 class="author">Android启动流程</h1>
     <h5 class="subtitle">
           
-            <time datetime="2016-11-03T11:11:20.000Z" itemprop="datePublished" class="page-time">
-  2016-11-03
+            <time datetime="2016-12-29T16:34:52.000Z" itemprop="datePublished" class="page-time">
+  2016-12-30
 </time>
 
  
@@ -146,7 +149,7 @@ Quick">
 </header>
 
     <div class="container body-wrap">
-      <article id="post-hello-android" 
+      <article id="post-Android启动流程" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
@@ -195,7 +198,7 @@ Quick">
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Quick-Start"><span class="post-toc-text">Quick Start</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Create-a-new-post"><span class="post-toc-text">Create a new post</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Run-server"><span class="post-toc-text">Run server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generate-static-files"><span class="post-toc-text">Generate static files</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deploy-to-remote-sites"><span class="post-toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            
             </nav>
             
         </aside>
@@ -203,20 +206,26 @@ Quick">
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <p>#Android启动流程<br>写了标题，才发现这个标题写的太大了，那这篇文章就分为两部分，一部分讲Android系统的启动，另一部分讲App的启动。  </p>
+<p>##Android系统启动<br>我们都知道Android是基于Linux的，所以他的启动流程和Linux如出一辙。  </p>
+<p>在Linux系统中所有的进程都是init进程的子进程。Zygote也一样它是在系统启动的过程中由init进程创建的，在系统启动脚本init.rc中。  </p>
+<pre><code>init.rc
+service zygote /syste/bin/app_process -Xzygote /system/bin -zygote --start-system-server
+        class main
+        socket zygote stream 666
+        onrestart restart surfaceflinger
+        ...
+</code></pre><p>表明要执行app_process，后面跟着的是参数，并且申请了一个套接字资源。</p>
+<p>Zygote如其名，就是一个孵化器，当系统启动起来的时候，app_process会为其加载一些资源，如Android的runtime运行时环境等等，然后会fork出一个进程，这是一个包括了各种系统服务的进程（AMS，PMS等等），这也是为什么我们在其他进程中调用了系统服务是通过IBinder进行的通信，因为不在一个进程当中，虽然我们没有察觉（因为使用了代理），现在系统服务都做好了，系统就算是初始化完成了，万事俱备只欠东风，从现在开始，这个Zygote才是一个真正的孵化器，每次当我们启动App的时候他都会和这个Zygote的socket进行通信，然后会fork出一个新的进程来供我们使用，当然这个fork出来的进程不是一般的进程，他是已经加载过系统资源的进程，所以我们才可以直接使用Android中的各种资源。   </p>
+<p>我说的比较通俗易懂，易于理解，如果要深入研究，还是要看源码，不过其中充斥了无数的c++代码，需要一定的c++功底  </p>
+<p>##App启动<br>经过前面Android启动流程的铺垫，我们可以来说明app的启动流程了，我们知道，Android的launcher也是一个程序，所以我们在点击桌面上的icon的时候，实际上是跳转到了另外一个app。  </p>
+<p>首先我们会获得ActivityManager这个服务，会在任务栈中查找当前的Activity对应的进程是否已经运行，如果是第一次运行，那么就是通过Zygote来克隆一个新的进程，装填资源后，然后启动ActivityThread，就是在这个java文件中，我们可以清楚的看到，在主线程当中已经掉用过一次Looper.prepareMainLooper()。 </p>
+<p>之后呢，就会生成我们的应用程序一系列的信息，交付给系统做记录，比如UID等，当然也是在这个时候生成我们的Context的，这个context说起来也很简单，我们翻看源码的时候，可以发现，所有的这个</p>
 
             <blockquote>
                 <p>
                 本文地址：
-                <a href="https://chandy1994.github.io/2016/11/03/hello-android/" target="_blank" rel="external">https://chandy1994.github.io/2016/11/03/hello-android/</a>
+                <a href="https://chandy1994.github.io/2016/12/30/Android启动流程/" target="_blank" rel="external">https://chandy1994.github.io/2016/12/30/Android启动流程/</a>
                 </p>
                 <footer><cite><a href="https://chandy1994.github.io">@Chandy 's Home</a></cite></footer>
             </blockquote>
@@ -224,14 +233,14 @@ Quick">
             
 <nav class="post-nav">
   
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2016/11/24/Activity-生命周期/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Activity 生命周期</h4>
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/12/30/View绘制流程/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">View绘制流程</h4>
       </a>
     </div>
-  
-
   
 </nav>
 
@@ -240,7 +249,7 @@ Quick">
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="hello-android" data-title="Hello Android" data-url="https://chandy1994.github.io/2016/11/03/hello-android/index.html"></div>
+	<div class="ds-thread" data-thread-key="Android启动流程" data-title="Android启动流程" data-url="https://chandy1994.github.io/2016/12/30/Android启动流程/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -271,10 +280,10 @@ Quick">
 
 <script>
 var BLOG_SHARE = {
-    title: "Hello Android",
+    title: "Android启动流程",
     pic: "/img/logo.png",
     summary: document.getElementsByName('summary')[0].content,
-    url: "https://chandy1994.github.io/2016/11/03/hello-android/index.html"
+    url: "https://chandy1994.github.io/2016/12/30/Android启动流程/index.html"
 };
 </script>
 <div class="global-share" id="global-share">

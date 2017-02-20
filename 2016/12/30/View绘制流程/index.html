@@ -3,26 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello Android | Chandy &#39;s Home | Noob</title>
+  <title>View绘制流程 | Chandy &#39;s Home | Noob</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
   <meta name="keywords" content="">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+  <meta name="description" content="#View绘制流程这个是一个很重要的知识点，从App的启动流程，我们可以直接跳到ViewRootImpl.java文件当中来查看。 
+我们知道我们的Activity最外层的是一个叫做PhoneWindow的窗口，你也可以理解为是屏幕，接着我们在屏幕上铺了一层DecorView的界面，前面的decor也就是我们理解的decoration的简写（装饰），然后呢，在DecorView的上面有一个Fram">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello Android">
-<meta property="og:url" content="https://chandy1994.github.io/2016/11/03/hello-android/index.html">
+<meta property="og:title" content="View绘制流程">
+<meta property="og:url" content="https://chandy1994.github.io/2016/12/30/View绘制流程/index.html">
 <meta property="og:site_name" content="Chandy 's Home">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-11-24T17:05:10.000Z">
+<meta property="og:description" content="#View绘制流程这个是一个很重要的知识点，从App的启动流程，我们可以直接跳到ViewRootImpl.java文件当中来查看。 
+我们知道我们的Activity最外层的是一个叫做PhoneWindow的窗口，你也可以理解为是屏幕，接着我们在屏幕上铺了一层DecorView的界面，前面的decor也就是我们理解的decoration的简写（装饰），然后呢，在DecorView的上面有一个Fram">
+<meta property="og:image" content="http://img3.07net01.com/upload/images/2015/07/09/1614879090926191.png">
+<meta property="og:updated_time" content="2017-02-20T18:45:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello Android">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="View绘制流程">
+<meta name="twitter:description" content="#View绘制流程这个是一个很重要的知识点，从App的启动流程，我们可以直接跳到ViewRootImpl.java文件当中来查看。 
+我们知道我们的Activity最外层的是一个叫做PhoneWindow的窗口，你也可以理解为是屏幕，接着我们在屏幕上铺了一层DecorView的界面，前面的decor也就是我们理解的decoration的简写（装饰），然后呢，在DecorView的上面有一个Fram">
+<meta name="twitter:image" content="http://img3.07net01.com/upload/images/2015/07/09/1614879090926191.png">
   
     <link rel="alternative" href="/atom.xml" title="Chandy &#39;s Home" type="application/atom+xml">
   
@@ -111,7 +113,7 @@ Quick">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Hello Android</div>
+        <div class="flex-col header-title ellipsis">View绘制流程</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -132,11 +134,11 @@ Quick">
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Hello Android</h1>
+    <h1 class="author">View绘制流程</h1>
     <h5 class="subtitle">
           
-            <time datetime="2016-11-03T11:11:20.000Z" itemprop="datePublished" class="page-time">
-  2016-11-03
+            <time datetime="2016-12-29T16:34:28.000Z" itemprop="datePublished" class="page-time">
+  2016-12-30
 </time>
 
  
@@ -146,7 +148,7 @@ Quick">
 </header>
 
     <div class="container body-wrap">
-      <article id="post-hello-android" 
+      <article id="post-View绘制流程" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
@@ -195,7 +197,7 @@ Quick">
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Quick-Start"><span class="post-toc-text">Quick Start</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Create-a-new-post"><span class="post-toc-text">Create a new post</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Run-server"><span class="post-toc-text">Run server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generate-static-files"><span class="post-toc-text">Generate static files</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deploy-to-remote-sites"><span class="post-toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            
             </nav>
             
         </aside>
@@ -203,20 +205,110 @@ Quick">
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <p>#View绘制流程<br>这个是一个很重要的知识点，从App的启动流程，我们可以直接跳到ViewRootImpl.java文件当中来查看。 </p>
+<p>我们知道我们的Activity最外层的是一个叫做PhoneWindow的窗口，你也可以理解为是屏幕，接着我们在屏幕上铺了一层DecorView的界面，前面的decor也就是我们理解的decoration的简写（装饰），然后呢，在DecorView的上面有一个FrameLayout的id为content的布局，而我们的布局文件则是放置在这个content之中的！</p>
+<p>引用从网上找到的这个图片（侵删）<br><img src="http://img3.07net01.com/upload/images/2015/07/09/1614879090926191.png" alt="baidu"> </p>
+<p>当我们的程序开始View绘制的时候，我们会调用</p>
+<blockquote>
+<p>scheduleTraversals()</p>
+</blockquote>
+<p>这个方法：  </p>
+<pre><code>    void scheduleTraversals() {
+    if (!mTraversalScheduled) {
+        mTraversalScheduled = true;
+        mTraversalBarrier = mHandler.getLooper().getQueue().postSyncBarrier();
+        mChoreographer.postCallback(
+                Choreographer.CALLBACK_TRAVERSAL, mTraversalRunnable, null);
+        if (!mUnbufferedInputDispatch) {
+            scheduleConsumeBatchedInput();
+        }
+        notifyRendererOfFramePending();
+        pokeDrawLockIfNeeded();
+    }
+}
+</code></pre><p>我们看到了postCallback方法，其中有一个mTraversalRunnable，这是个什么呢？  </p>
+<pre><code>final class TraversalRunnable implements Runnable {
+    @Override
+    public void run() {
+        doTraversal();
+    }
+}
+</code></pre><p>就是个runnable，调用了doTraversal方法，接着我们再搜索到这个方法</p>
+<pre><code>    void doTraversal() {
+    if (mTraversalScheduled) {
+        mTraversalScheduled = false;
+        mHandler.getLooper().getQueue().removeSyncBarrier(mTraversalBarrier);
+
+        if (mProfile) {
+            Debug.startMethodTracing(&quot;ViewAncestor&quot;);
+        }
+
+        performTraversals();
+
+        if (mProfile) {
+            Debug.stopMethodTracing();
+            mProfile = false;
+        }
+    }
+}
+</code></pre><p>说了这么多，终于到主角了：  </p>
+<blockquote>
+<p>performTraversals()  </p>
+</blockquote>
+<p>这个方法，在这个方法中，包含了所有的对View树的遍历和绘制。  </p>
+<pre><code>private void performTraversals() {
+
+……
+performMeasure(childWidthMeasureSpec, childHeightMeasureSpec);
+……
+performLayout(lp, mWidth, mHeight);
+……
+performDraw();
+}  
+</code></pre><p>我将其中最重要的三个方法选了出来，分别是Measure，Layout，Draw，想必现在已经猜到了，分别对应View的onMeasure，onLayout，onDraw，别着急，继续往下看。  </p>
+<pre><code>private void performMeasure(int childWidthMeasureSpec, int childHeightMeasureSpec) {
+    Trace.traceBegin(Trace.TRACE_TAG_VIEW, &quot;measure&quot;);
+    try {
+        mView.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+    } finally {
+        Trace.traceEnd(Trace.TRACE_TAG_VIEW);
+    }
+}    
+</code></pre><p>接着是layout的（太长我就不贴了）</p>
+<pre><code>private void performLayout(WindowManager.LayoutParams lp, int desiredWindowWidth,
+        int desiredWindowHeight) {
+        ……
+        view.requestLayout();
+        ……
+        }
+</code></pre><p>最后是Draw的  </p>
+<pre><code>private void performDraw() {
+    ……
+    drawSoftware(surface, mAttachInfo, xOffset, yOffset, scalingRequired, dirty)
+    ……
+    }
+</code></pre><p>调用了drawsoftware方法：</p>
+<pre><code>private boolean drawSoftware(Surface surface, AttachInfo attachInfo, int xoff, int yoff,
+        boolean scalingRequired, Rect dirty) {
+    ……
+    mView.draw(canvas);
+    ……
+    }
+</code></pre><p> 熟悉吗？这不就都是我们熟悉的自定义控件重写的那几个方法吗？  </p>
+<p> 至此，当我们的App启动之后的View绘制的大体路线已经描绘了出来，接下来我们就进入到View和ViewGroup当中来看看这些方法。</p>
+<p>##View<br>看完了整体的之后，那我们的View就很简单了，就是上边所说的  </p>
+<ul>
+<li>Measure</li>
+<li>Layout</li>
+<li>Draw</li>
+</ul>
+<p>不过呢我们一点细节需要说明，View的Measure方法中才会调用onMeasure方法，因为Measure是final所以我们只能重写onMeasure，然后会requestLayout，最后Draw的内容也就是我们的onDraw的方法了。</p>
+<p>##ViewGroup<br>这个其实和View很相近，只不过在自己是容器的情况下，他需要遍历每个子控件，这也就是他和View的不同之处。</p>
 
             <blockquote>
                 <p>
                 本文地址：
-                <a href="https://chandy1994.github.io/2016/11/03/hello-android/" target="_blank" rel="external">https://chandy1994.github.io/2016/11/03/hello-android/</a>
+                <a href="https://chandy1994.github.io/2016/12/30/View绘制流程/" target="_blank" rel="external">https://chandy1994.github.io/2016/12/30/View绘制流程/</a>
                 </p>
                 <footer><cite><a href="https://chandy1994.github.io">@Chandy 's Home</a></cite></footer>
             </blockquote>
@@ -225,13 +317,20 @@ Quick">
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2016/11/24/Activity-生命周期/" id="post-prev" class="post-nav-link">
+      <a href="/2016/12/30/Android启动流程/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Activity 生命周期</h4>
+        <h4 class="title">Android启动流程</h4>
       </a>
     </div>
   
 
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/12/30/异步任务/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">异步任务</h4>
+      </a>
+    </div>
   
 </nav>
 
@@ -240,7 +339,7 @@ Quick">
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="hello-android" data-title="Hello Android" data-url="https://chandy1994.github.io/2016/11/03/hello-android/index.html"></div>
+	<div class="ds-thread" data-thread-key="View绘制流程" data-title="View绘制流程" data-url="https://chandy1994.github.io/2016/12/30/View绘制流程/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -271,10 +370,10 @@ Quick">
 
 <script>
 var BLOG_SHARE = {
-    title: "Hello Android",
+    title: "View绘制流程",
     pic: "/img/logo.png",
     summary: document.getElementsByName('summary')[0].content,
-    url: "https://chandy1994.github.io/2016/11/03/hello-android/index.html"
+    url: "https://chandy1994.github.io/2016/12/30/View绘制流程/index.html"
 };
 </script>
 <div class="global-share" id="global-share">
